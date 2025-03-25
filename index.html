@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Sales - Buy Your Dream Car</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #fcbf49;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+        }
+
+        /* Dynamic navigation menu */
+        nav {
+            background-color: #fb8500;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #ff8c00;
+            border-radius: 5px;
+        }
+
+        /* Hero section */
+        .hero {
+            background-image: url('https://via.placeholder.com/1200x500/ffb84d/ffffff?text=Buy+Your+Dream+Car+Today');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .hero h2 {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* Featured cars section */
+        .featured-cars {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 40px 0;
+            background-color: #f4f4f9;
+        }
+
+        .featured-cars .car-card {
+            background-color: white;
+            width: 300px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .featured-cars .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-card h3 {
+            padding: 10px;
+            background-color: #fcbf49;
+            color: white;
+            text-align: center;
+        }
+
+        .car-card p {
+            padding: 10px;
+            color: #333;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: #fb8500;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .contact h3 {
+            font-size: 2rem;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .featured-cars {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Car Sales - Buy Your Dream Car</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#featured">Featured Cars</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <h2>Find Your Perfect Car Today</h2>
+    </div>
+
+    <section id="featured" class="featured-cars">
+        <div class="car-card">
+            <img src="https://via.placeholder.com/300x200/ff7f50/ffffff?text=Car+1" alt="Car 1">
+            <h3>SUV Model A</h3>
+            <p>Price: $35,000</p>
+        </div>
+        <div class="car-card">
+            <img src="https://via.placeholder.com/300x200/ff7f50/ffffff?text=Car+2" alt="Car 2">
+            <h3>Sportscar B</h3>
+            <p>Price: $50,000</p>
+        </div>
+        <div class="car-card">
+            <img src="https://via.placeholder.com/300x200/ff7f50/ffffff?text=Car+3" alt="Car 3">
+            <h3>Sedan C</h3>
+            <p>Price: $25,000</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h3>Contact Us</h3>
+        <p>If you have any questions, feel free to reach out!</p>
+        <p>Email: info@carsales.com | Phone: +1 234 567 890</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Car Sales. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
