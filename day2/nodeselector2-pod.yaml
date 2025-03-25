@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nodeselector2-pod
+  name: nodeselector2-pod
+spec:
+  nodeSelector:
+    kubernetes.io/env: dev
+  containers:
+  - image: nginx
+    name: nodename-pod

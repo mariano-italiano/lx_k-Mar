@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: toleration-pod
+spec:
+  containers:
+  - image: nginx
+    name: c1
+  tolerations:
+  - key: kubernetes.io/zone
+    operator: "Equal"
+    value: dmz
+    effect: "NoSchedule"

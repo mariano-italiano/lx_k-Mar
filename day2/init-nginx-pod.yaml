@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-nginx-pod
+  labels:
+    kubernetes.io/application: custom-nginx
+spec:
+  initContainers:
+  - name: download
+    image: alpine:3.2 
+    command: ['sh', '-c', 'apk update; apk add git; git clone -b develop https://github.com/mariano-italiano/lx_k-Mar.git /app && echo init ok > /test/status']
+    volumeMounts:
+    - name: sharedvol
+      mountPath: /app
+    - name: validation
+      mountPath: /test
+  - name: svc-check
+    image: radial/busyboxplus:curl
+    command: ['sh', '-c', 'until nslookup init-web-svc.default.svc.cluster.local; do echo waiting for service to start; sleep 5; done']
+  containers:
+  - name: web
+    image: nginx:1.19.2
+    imagePullPolicy: Always
+    volumeMounts:
+    - name: sharedvol
+      mountPath: /usr/share/nginx/html
+    - name: validation
+      mountPath: /test
+  volumes:
+  - name: sharedvol
+    emptyDir: {}
+  - name: validation
+    emptyDir: {}
