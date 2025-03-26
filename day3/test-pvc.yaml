@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: test-pvc
+spec:
+  storageClassName: ""   # Pusta storageClassName musi być wyraźnie ustawiona, w przeciwnym razie zostanie ustawiona domyślna StorageClass'a
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Mi

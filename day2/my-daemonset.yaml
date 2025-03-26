@@ -5,11 +5,11 @@ metadata:
 spec:
   selector:
     matchLabels:
-      name: fluentd-elasticsearch
+      app: fluentd-elasticsearch
   template:
     metadata:
       labels:
-        name: fluentd-elasticsearch
+        app: fluentd-elasticsearch
     spec:
       tolerations:
       - key: node-role.kubernetes.io/control-plane

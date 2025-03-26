@@ -1,0 +1,241 @@
+kubectl get pod
+kubectl rollout restart deployment my-deployment 
+kubectl get pod
+kubectl edit deployments.apps my-deployment 
+kubectl scale deployment my-deployment --replicas 0 
+kubectl get pod
+kubectl scale deployment my-deployment --replicas 3
+kubectl get pod
+kubectl scale deployment my-deployment --replicas 8
+kubectl get pod
+kubectl rollout restart deployment my-deployment ; watch -n1 kubectl get pods
+kubectl get svc
+kubectl delete svc clusterip-svc nodeport-svc lb-svc 
+kubectl get svc
+kubectl get ingressclasses.networking.k8s.io 
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/baremetal/deploy.yaml
+kubectl get all -n ingress-nginx 
+kubectl edit svc -n ingress-nginx ingress-nginx-controller
+kubectl get all -n ingress-nginx 
+kubectl get ingressclasses.networking.k8s.io 
+kubectl get pods
+kubectl delete all --all
+kubectl get pods
+kubectl get svc
+kubectl create deployment car-rental --image nginx:1.19.2 --replicas 1 
+kubectl create deployment book-store --image nginx:1.19.2 --replicas 1 
+kubectl get pods,deploy
+kubectl expose deployment car-rental --port 80 --name car-rental-svc
+kubectl expose deployment book-store --port 80 --name book-store-svc
+kubectl get svc
+vi index-car.html
+vi index-book.html
+kubectl cp index-car.html car-rental-57fcfbdc4b-nmmb4:/usr/share/nginx/html/index.html
+kubectl cp index-book.html book-store-6cf6b6765b-mkcd4:/usr/share/nginx/html/index.html
+vi app-ingress.yaml
+kubectl apply -f app-ingress.yaml
+kubectl describe ingress app-ingress 
+vi app-ingress.yaml 
+kubectl apply -f app-ingress.yaml
+kubectl describe ingress app-ingress 
+kubectl run appx --image httpd 
+kubectl expose pod appx --port 80 --name appx-svc 
+vi app-ingress.yaml 
+kubectl apply -f app-ingress.yaml
+kubectl describe ingress app-ingress 
+vi my-sts.yaml
+kubectl apply -f my-sts.yaml
+vi my-sts.yaml
+kubectl get pods 
+kubectl get pods,sts,rs,
+kubectl get pods,sts,rs
+kubectl scale statefulset my-sts --replicas 8
+watch -n1 kubectl get pods
+kubectl scale statefulset my-sts --replicas 2
+watch -n1 kubectl get pods
+kubectl scale statefulset my-sts --replicas 8
+watch -n1 kubectl get pods
+kubectl describe sts my-sts 
+kubectl set image sts my-sts stfs-container=nginx:1.19.2
+watch -n1 kubectl get pods
+kubectl describe sts my-sts 
+kubectl rollout restart sts my-sts 
+watch -n1 kubectl get pods
+vi pi.yaml
+kubectl api-versions |grep Job
+kubectl api-versions |grep -iJob
+kubectl api-versions |grep -i Job
+kubectl api-resources |grep -i Job
+vi pi.yaml
+kubectl apply -f pi.yaml
+kubectl get jobs
+kubectl get jobs,pod
+watch -n1 kubectl get jobs,pod
+kubectl logs pi-frhdq 
+vi sleep-job.yaml
+kubectl apply -f sleep-job.yaml
+watch -n1 kubectl get jobs,pod
+vi parallel-job.yaml
+kubectl apply -f parallel-job.yaml
+watch -n1 kubectl get jobs,pod
+kubectl get pods
+kubectl delete jobs.batch parallel-job 
+kubectl get pods
+kubectl apply -f sleep-job.yaml
+watch -n1 kubectl get jobs,pod
+vi hello-cronjob.yaml
+kubectl apply -f hello-cronjob.yaml
+kubectl get pod,job,cj
+wathc-n1 kubectl get pod,job,cj
+watch -n1 kubectl get pod,job,cj
+cat app-ingress.yaml 
+vi parallel-job.yaml 
+vi ../day2/my-daemonset.yaml 
+kubectl apply ../day2/my-daemonset.yaml
+kubectl apply -f ../day2/my-daemonset.yaml
+kubectl get pods
+vi ../day2/my-daemonset.yaml
+kubectl apply -f ../day2/my-daemonset.yaml
+kubectl delete -f ../day2/my-daemonset.yaml
+kubectl apply -f ../day2/my-daemonset.yaml
+vi volume-pod.yaml
+kubectl apply -f volume-pod.yaml
+kubectl get pods
+kubectl get pods -o wide
+kubectl exec -it volume-pod -- bash
+kubectl replace --force -f volume-pod.yaml 
+kubectl get pods -o wide
+kubectl exec -it volume-pod -- bash
+vi volume-pod.yaml 
+kubectl replace --force -f volume-pod.yaml 
+kubectl exec -it volume-pod -- bash
+vi test-pv.yaml
+kubectl get sc 
+kubectl apply -f test-pv.yaml 
+kubectl api-resources | grep pv
+vi test-pvc.yaml
+kubectl apply -f test-pvc.yaml
+kubectl get pv,pvc
+kubectl delete pvc test-pvc 
+vi test-pv
+vi test-pvc.yaml 
+kubectl apply -f test-pvc.yaml
+kubectl get pv,pvc
+vi pv-vol-pod.yaml
+kubectl apply -f pv-vol-pod.yaml
+kubectl get pods
+kubectl get pods -o wide
+kubectl expose pod pv-vol-pod --name pv-vol-svc --port 80 --type NodePort
+kubectl edit pod pv-vol-pod 
+kubectl expose pod pv-vol-pod --name pv-vol-svc --port 80 --type NodePort
+kubectl get svc
+kubectl delete -f pv-vol-pod.yaml 
+kubectl apply -f pv-vol-pod.yaml
+kubectl get pods -o wide
+kubectl get svc
+kubectl get pod,svc,ep -o wide
+kubectl edit pod pv-vol-pod 
+kubectl get pod,svc,ep -o wide
+kubectl delete pod pv-vol-pod 
+kubectl pv,pvc
+kubectl get pv,pvc
+kubectl delete pvc test-pvc 
+kubectl get pv,pvc
+kubectl apply -f test-pvc.yaml 
+kubectl get pv,pvc
+kubectl get pvc test-pvc -o json 
+kubectl get pv test-pv -o json 
+kubectl edit pv test-pv 
+kubectl patch pv test-pv -p '{"spec":{"claimRef": null }}'
+kubectl get pv test-pv -o json 
+kubectl get pv,pvc
+cp test-pv.yaml nfs-pv.yaml
+vi nfs-pv.yaml
+kubectl apply -f nfs-pv.yaml
+cp test-pvc.yaml nfs-pvc.yaml
+vi nfs-pvc.yaml
+kubectl apply -f nfs-pvc.yaml
+kubectl get pv,pvc
+kubectl delete -f nfs-pvc.yaml 
+kubectl delete -f nfs-pv.yaml 
+vi nfs-pv.yaml
+kubectl apply -f nfs-pv.yaml -f nfs-pvc.yaml
+kubectl get pv,pvc
+cp -rp pv-vol-pod.yaml nfs-vol-pod.yaml
+vi nfs-vol-pod.yaml
+kubectl apply -f nfs-vol-pod.yaml
+kubectl get pods 
+vi nfs-vol-pod.yaml
+kubectl delete pod pv-vol-pod 
+kubectl apply -f nfs-vol-pod.yaml
+kubectl get pods -o wide
+kubectl exec -it nfs-vol-pod -- bash
+kubectl edit pod nfs-vol-pod 
+kubectl get svc,ep
+kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+kubectl get sc
+kubectl edit sc local-path 
+cp nfs-pvc.yaml dynamic-pvc.yaml
+vi dynamic-pvc.yaml
+kubectl apply -f dynamic-pvc.yaml
+vi dynamic-pvc.yaml
+kubectl apply -f dynamic-pvc.yaml
+kubectl get pvc
+cp nfs-vol-pod.yaml dynamic-vol-pod.yaml
+vi dynamic-vol-pod.yaml
+kubectl get pv,pvc
+kubectl apply -f dynamic-vol-pod.yaml
+watch -n1 kubectl get pv,pvc
+vi my-configmap.yaml
+kubectl apply -f my-configmap.yaml
+vi my-configmap.yaml
+kubectl apply -f my-configmap.yaml
+kubectl describe cm my-configmap 
+vi service.json
+kubectl create cm services --from-file service.json
+kubectl describe cm services 
+kubectl create cm services2 --from-file services=service.json
+kubectl describe cm services2 
+vi envfile
+kubectl create cm from-env-file --from-env-file envfile 
+kubectl describe cm from-env-file 
+kubectl create cm my-last-cm --from-literal app=Aplication1 --from-file service.json --from-literal testkey=testval 
+kubectl describe cm my-last-cm 
+vi configmap-pod.yaml
+kubectl apply -f configmap-pod.yaml
+kubectl exec -it configmap-pod -- env
+cp configmap-pod.yaml configmap-vol-pod.yaml
+vi configmap-vol-pod.yaml
+kubectl apply -f configmap-vol-pod.yaml
+vi configmap-vol-pod.yaml
+kubectl apply -f configmap-vol-pod.yaml
+kubectl delete -f configmap-vol-pod.yaml
+kubectl apply -f configmap-vol-pod.yaml
+kubectl exec -it configmap-pod -- bash
+kubectl exec -it configmap-pod -- sh
+kubectl edit cm my-last-cm 
+kubectl exec -it configmap-pod -- sh
+kubectl create secret generic app-pass --from-literal root=SecurePass123
+kubectl get secrets \
+kubectl get secrets 
+kubectl describe secrets 
+kubectl get secrets -o ymal
+kubectl get secrets -o yaml
+echo 'U2VjdXJlUGFzczEyMw==' | base64 -d 
+kubectl get ns
+vi final-app.yaml
+kubectl apply -f final-app.yaml
+kubectl get all -n app
+watch -n1 kubectl get all -n app
+kubectl get pv,pvc -n app
+vi final-app.yaml
+kubectl delete -f final-app.yaml
+kubectl apply -f final-app.yaml
+watch -n1 kubectl get all -n app
+kubectl get pv,pvc -n app
+watch -n1 kubectl get all -n app
+kubectl rollout restart deployment -n app postgres 
+kubectl get pod -n app
+kubectl get pv,pvc -n app
+history
+history | awk '$1 > 480' | cut -c 8- > ../day3-history.txt

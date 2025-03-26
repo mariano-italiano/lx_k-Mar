@@ -1,0 +1,4 @@
+VAR1=VALUE1
+# adding var2
+VAR2=VALUE2
+OLD_VALUE="something here"

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dynamic-pvc
+spec:
+  storageClassName: "local-path"   # Pusta storageClassName musi być wyraźnie ustawiona, w przeciwnym razie zostanie ustawiona domyślna StorageClass'a
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
